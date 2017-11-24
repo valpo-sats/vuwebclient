@@ -17,3 +17,9 @@ This repository uses a `git submodule`.  When initially cloning, use:
 and/or, anytime afterwards use the following to keep the submodule updated:
 
     `git submodule update --init`
+
+## License
+
+&copy; 2017 [Dan White](https://github.com/etihwnad).
+
+Licensed the same as the [SatNOGS](https://satnogs.org) project under the [AGPLv3](LICENSE).
