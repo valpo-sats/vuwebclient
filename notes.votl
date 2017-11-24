@@ -1,10 +1,13 @@
 
 [X] axis_gear_flange
-	Sketch-main.AxisRadius: [20 mm, 0 mm]
+	Sketch-main.AxisRadius: range [20 mm, 0 mm]
 		: mounting tube radius
 	Pad-M3Nut and Pad-M3Nut1
 		: set .Length to diameter + 2*3.5mm for the internal M3 nut pocket
 [_] axis_spacer
+	Sketch.AxisRadius: range [20mm, 0mm]
+		: mounting tube radius
+		: outer diameter is fixed to 50mm / 25mm radius
 [_] axis_gear_as5601
 [_] homing ring
 
