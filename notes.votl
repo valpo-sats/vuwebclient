@@ -9,5 +9,10 @@
 		: mounting tube radius
 		: outer diameter is fixed to 50mm / 25mm radius
 [_] axis_gear_as5601
-[_] homing ring
+	: rebuild from scratch to include the homing nub
+	Sketch.AxisRadius: range [20mm, 0mm]
+		: mounting tube radius
+	Pad-M3Nut-pocket1 and Pad-M3Nut-pocket2
+		: set .Length to diameter + 2*3.5mm for the internal M3 nut pocket
+[_] homing_ring
 
