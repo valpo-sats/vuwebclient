@@ -2,3 +2,4 @@
 	path = satnogs-rotator
 	url = https://gitlab.com/wiredlab/satnogs-rotator.git
 	branch = constraint-names
+	shallow = true
