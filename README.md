@@ -10,6 +10,8 @@ Input the desired diameter of your tubing in milimeters and you get new `.stl` a
 
 ## Development notes
 
+Requires FreeCAD version 0.16 or later.
+
 This repository uses a `git submodule`.  When initially cloning, use:
 
     `git clone --recursive`
