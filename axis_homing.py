@@ -7,12 +7,45 @@ import sys
 
 from decimal import Decimal
 
+
+# local module
 import changer
 
-# should probably get FreeCAD in the PYTHONPATH from outside of the script
-FREECADPATH= '/usr/lib/freecad/lib'
-sys.path.append(FREECADPATH)
 
+
+# Detect if we are running directly or within FreeCAD
+if __name__ == '__main__':
+    # This is officially not recommended, see:
+    # https://www.freecadweb.org/wiki/Embedding_FreeCAD#Caveats
+    #
+    # Should probably get FreeCAD in the PYTHONPATH from outside of the
+    # script instead of hardcoding here.
+    FREECADPATH= '/usr/lib/freecad/lib'
+    sys.path.append(FREECADPATH)
+
+    # Get the argument from the command line
+    try:
+        diameter = Decimal(sys.argv[1])
+    except:
+        print(sys.argv)
+        print('ERROR: bad.  Argument expects desired diameter in mm.')
+        raise
+
+else:
+    # We are running as a FreeCAD script, possibly invoked as
+    # $ freecadcmd scriptname.py
+    #
+    # Get the argument via an environment variable instead
+    #   (is there a better way?)
+    try:
+        diameter = Decimal(os.environ['FREECAD_AXIS_DIAMETER'])
+    except:
+        print(sys.argv)
+        print('ERROR: bad.  Argument expects desired diameter in mm.')
+        raise
+
+
+# now we can reliably import the package
 import FreeCAD
 import Mesh
 
@@ -41,15 +74,11 @@ class AxisHoming(changer.Changer):
 
 
 
-if __name__ == '__main__':
-    try:
-        diameter = Decimal(sys.argv[1])
-    except:
-        print(sys.argv)
-        print('ERROR: bad.  Argument expects desired diameter in mm.')
-        raise
+# Now everything is setup.  We are assuming at this point that `diameter` is a
+# Decimal instance and already set.
 
-    part = AxisHoming()
-    part.changeAxisDiameter(diameter)
-    part.saveFreecad()
-    part.saveSTL()
+# Do the deed and output files
+part = AxisHoming()
+part.changeAxisDiameter(diameter)
+part.saveFreecad()
+part.saveSTL()
